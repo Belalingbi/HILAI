@@ -1,0 +1,17 @@
+services:
+  hilai-studio:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: hilai_studio
+    restart: unless-stopped
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-2.5-flash}
+      - HILAI_SEC_STRICT=true
+    volumes:
+      - ../sorties_a_valider:/app/sorties_a_valider
+      - ../sauvegardes_studio:/app/sauvegardes_studio
+      - ../journal_*.md:/app/
+    stdin_open: true
+    tty: true

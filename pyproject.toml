@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hilai-studio"
+version = "1.0.0"
+authors = [
+  { name="Belalingbi Steve", email="belalingbi@gmail.com" },
+]
+description = "HILAI — Studio IA Modulaire « Human-in-the-Loop » avec Apprentissage Continu et Durcissement Cybersécurité"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+keywords = [
+  "human-in-the-loop",
+  "artificial-intelligence",
+  "cybersecurity",
+  "hardening",
+  "ai-agent",
+  "gemini",
+  "orchestrator",
+  "cyberanonymat"
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Security",
+]
+dependencies = [
+  "google-genai>=0.1.1",
+  "sympy>=1.12",
+  "openpyxl>=3.1.0",
+  "python-pptx>=0.6.21",
+  "reportlab>=4.0.0",
+  "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "pytest-cov>=4.1.0",
+  "bandit>=1.7.5",
+  "flake8>=7.0.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Belalingbi/HILAI"
+"Repository" = "https://github.com/Belalingbi/HILAI"
+"CyberAnonymat" = "https://github.com/cyberanonymat-sudo"
+"Author" = "https://github.com/Belalingbi"
+
+[project.scripts]
+hilai = "studio_lanceur:main"
+hilai-verifier = "verifier_studio:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

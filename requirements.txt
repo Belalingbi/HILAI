@@ -1,0 +1,17 @@
+# Dépendances principales du Studio HILAI
+# Note : HILAI dispose d'un Moteur Local Autonome universel et fonctionne
+# même sans ces dépendances, mais elles activent les capacités étendues :
+
+# SDK Gemini pour l'IA Cloud haute fidélité
+google-genai>=0.1.1
+
+# Calculs formels et géométrie avancée
+sympy>=1.12
+
+# Génération binaire bureautique (Excel, PowerPoint, PDF)
+openpyxl>=3.1.0
+python-pptx>=0.6.21
+reportlab>=4.0.0
+
+# Gestion des variables d'environnement
+python-dotenv>=1.0.0

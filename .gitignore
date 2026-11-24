@@ -1,0 +1,46 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+
+# Caches
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Environments & secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Output directories & user-specific runtime data
+sorties_a_valider/*
+!sorties_a_valider/.gitkeep
+sauvegardes_studio/*
+!sauvegardes_studio/.gitkeep
+journal_*.md
+
+# IDEs & OS metadata
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary artifacts
+extracted_docx_text.txt
+docx_paragraphs.txt
+*.tmp

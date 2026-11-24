@@ -1,0 +1,16 @@
+{
+  "proprietaire": "Belalingbi Steve",
+  "mode_autonomie": "humain_dans_la_boucle",
+  "peut_preparer_seul": [
+    "analyser_un_probleme",
+    "rediger_un_brouillon",
+    "lister_des_options",
+    "organiser_des_notes"
+  ],
+  "exige_validation_steve": [
+    "toute_decision_strategique",
+    "toute_action_externe_ou_irreversible",
+    "tout_changement_de_priorite",
+    "toute_mise_a_jour_majeure_des_preferences"
+  ]
+}

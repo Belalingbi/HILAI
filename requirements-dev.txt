@@ -1,0 +1,10 @@
+# Dépendances de développement, tests et audit de sécurité
+pytest>=8.0.0
+pytest-cov>=4.1.0
+
+# Outils de cybersécurité et analyse statique
+bandit>=1.7.5
+safety>=3.0.0
+flake8>=7.0.0
+black>=24.0.0
+mypy>=1.8.0
