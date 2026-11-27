@@ -1,6 +1,6 @@
-# Dépendances principales du Studio HILAI
-# Note : HILAI dispose d'un Moteur Local Autonome universel et fonctionne
-# même sans ces dépendances, mais elles activent les capacités étendues :
+# Dépendances principales du Studio HILAI v2.0
+# Note : HILAI dispose d'un Moteur Local Autonome universel (PNG, WAV, Montage, CLI & GUI)
+# et fonctionne même sans dépendances lourdes. Ces paquets activent les capacités étendues :
 
 # SDK Gemini pour l'IA Cloud haute fidélité
 google-genai>=0.1.1
@@ -13,5 +13,6 @@ openpyxl>=3.1.0
 python-pptx>=0.6.21
 reportlab>=4.0.0
 
-# Gestion des variables d'environnement
+# Télémétrie système & gestion d'environnement
+psutil>=5.9.0
 python-dotenv>=1.0.0

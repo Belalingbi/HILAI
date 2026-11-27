@@ -40,7 +40,9 @@ journal_*.md
 Thumbs.db
 desktop.ini
 
-# Temporary artifacts
+# Temporary artifacts & local runtime config
 extracted_docx_text.txt
 docx_paragraphs.txt
+config_studio.json
+~$*.docx
 *.tmp

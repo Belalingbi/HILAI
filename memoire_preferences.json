@@ -48,6 +48,7 @@
     "2026-11-21 : Validation 'Oui' des 3 lecons proposees lors du bilan du soir"
   ],
   "decisions": [
-    "2026-11-24 14:21 [marketing_bi] : Validation explicite en mode démonstration (Vérification de l'intégrité de la boucle Human-in-the-Loop)"
+    "2026-11-24 14:21 [marketing_bi] : Validation explicite en mode démonstration (Vérification de l'intégrité de la boucle Human-in-the-Loop)",
+    "2026-11-27 17:21 [marketing_bi] : Validation explicite en mode démonstration (Vérification de l'intégrité v2.0 Human-in-the-Loop)"
   ]
 }

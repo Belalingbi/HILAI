@@ -1,7 +1,7 @@
 """
 verifier_studio.py — Diagnostic d'environnement, de cybersécurité et de cohérence modulaire.
 
-Projet : HILAI — Studio IA Modulaire « Human-in-the-Loop »
+Projet : HILAI — Studio IA Modulaire « Human-in-the-Loop » v2.0
 Auteur : Belalingbi Steve / CyberAnonymat Project
 Licence : Apache-2.0
 """
@@ -10,14 +10,19 @@ import importlib
 import importlib.util
 import os
 import py_compile
+import shutil
 import sys
 from pathlib import Path
 
 FICHIERS_STUDIO = [
     "securite_garde_fous.py",
+    "parametres_studio.py",
     "ia_fournisseur.py",
     "fiabilite_studio.py",
     "connecteurs_et_sauvegarde.py",
+    "generateur_media_infini.py",
+    "montage_video_studio.py",
+    "multimodal_capteurs.py",
     "studio_coeur.py",
     "studio_lanceur.py",
     "reconnaissance_photo_chanson.py",
@@ -27,23 +32,31 @@ FICHIERS_STUDIO = [
     "registre_studio.py",
 ]
 
-MODULES_OPTIONNELS = ["tkinter", "google.genai", "sympy", "openpyxl", "pptx", "reportlab"]
+MODULES_OPTIONNELS = [
+    "tkinter",
+    "google.genai",
+    "cv2",
+    "PIL",
+    "psutil",
+    "sounddevice",
+    "pyttsx3",
+    "sympy",
+    "openpyxl",
+    "pptx",
+    "reportlab",
+]
 
 
 def verifier_tout() -> dict:
     from ia_fournisseur import obtenir_mode_fournisseur
-    from securite_garde_fous import (
-        calculer_expression_securisee,
-        masquer_secrets,
-        valider_chemin_confine,
-        valider_commande_securisee,
-    )
+    from securite_garde_fous import executer_audit_securite_complet
 
     rapport = {
         "os": sys.platform,
         "python": sys.version.split()[0],
         "api_key_presente": bool(os.environ.get("GEMINI_API_KEY")),
         "mode_fournisseur": obtenir_mode_fournisseur(),
+        "ffmpeg_present": bool(shutil.which("ffmpeg")),
         "syntaxe_fichiers": {},
         "durcissement_securite": {},
         "dependances_optionnelles": {},
@@ -62,39 +75,10 @@ def verifier_tout() -> dict:
         except py_compile.PyCompileError as exc:
             rapport["syntaxe_fichiers"][nom] = f"erreur_syntaxe: {exc.msg}"
 
-    # 2. Audit du durcissement cybersécurité
+    # 2. Audit complet du durcissement cybersécurité
     try:
-        # Test Path Traversal
         Path("sorties_a_valider").mkdir(exist_ok=True)
-        valider_chemin_confine("sorties_a_valider/test.txt", "sorties_a_valider")
-        try:
-            valider_chemin_confine("../test_traversal.txt", "sorties_a_valider")
-            rapport["durcissement_securite"]["anti_path_traversal"] = "échec"
-        except ValueError:
-            rapport["durcissement_securite"]["anti_path_traversal"] = "actif (traversée bloquée)"
-
-        # Test Command Injection
-        valider_commande_securisee(["python", "--version"])
-        try:
-            valider_commande_securisee(["python", "test.py; rm -rf /"])
-            rapport["durcissement_securite"]["anti_command_injection"] = "échec"
-        except ValueError:
-            rapport["durcissement_securite"]["anti_command_injection"] = "actif (métalangage bloqué)"
-
-        # Test Masquage de secrets
-        secret_test = masquer_secrets("Clé : AIzaSyD12345678901234567890123456789012")
-        if "[SECRET_GEMINI_API_KEY_MASQUÉ]" in secret_test:
-            rapport["durcissement_securite"]["masquage_secrets"] = "actif (auto-redaction)"
-        else:
-            rapport["durcissement_securite"]["masquage_secrets"] = "échec"
-
-        # Test Calculateur AST sans eval
-        res_calc = calculer_expression_securisee("2 + 3 * 4")
-        if res_calc["succes"] and res_calc["resultat"] == 14:
-            rapport["durcissement_securite"]["calcul_ast_sans_eval"] = "actif (sécurisé)"
-        else:
-            rapport["durcissement_securite"]["calcul_ast_sans_eval"] = "échec"
-
+        rapport["durcissement_securite"] = executer_audit_securite_complet()
     except Exception as exc:
         rapport["durcissement_securite"]["erreur"] = str(exc)
 
@@ -119,12 +103,13 @@ def verifier_tout() -> dict:
 
 def afficher_rapport(rapport: dict) -> None:
     print("================================================================")
-    print("       DIAGNOSTIC HILAI STUDIO — BELALINGBI STEVE               ")
-    print("       Projet CyberAnonymat — Human-in-the-Loop IA              ")
+    print("     DIAGNOSTIC HILAI STUDIO v2.0 — BELALINGBI STEVE            ")
+    print("     Projet CyberAnonymat — Human-in-the-Loop IA                ")
     print("================================================================")
     print(f"Système d'exploitation : {rapport['os']} | Python : {rapport['python']}")
     print(f"Mode d'intelligence   : {rapport['mode_fournisseur'].upper()}")
     print(f"GEMINI_API_KEY        : {'Détectée & Prête' if rapport['api_key_presente'] else 'Mode Local Autonome Actif'}")
+    print(f"Moteur FFmpeg local   : {'Installé' if rapport.get('ffmpeg_present') else 'Absent (mode storyboard/timeline actif)'}")
 
     print("\n[+] Durcissement Cybersécurité & Garde-fous :")
     for mecanisme, statut in rapport["durcissement_securite"].items():
@@ -139,11 +124,12 @@ def afficher_rapport(rapport: dict) -> None:
         etat_str = "Installé" if dispo else "Non installé (fallback automatique)"
         print(f"  • {mod:<25} : {etat_str}")
 
-    print("\n[+] Registre des 9 capacités modulaires :")
-    for cle, infos in rapport.get("capacites", {}).items():
+    caps = rapport.get("capacites", {})
+    print(f"\n[+] Registre des {len(caps)} capacités modulaires :")
+    for cle, infos in caps.items():
         if isinstance(infos, dict):
             statut = "Opérationnelle [100%]" if infos.get("disponible") else "Indisponible"
-            print(f"  • {cle:<22} ({infos.get('label', '')[:35]}) : {statut}")
+            print(f"  • {cle:<26} ({infos.get('label', '')[:32]}) : {statut}")
         else:
             print(f"  • {cle} : {infos}")
     print("================================================================\n")

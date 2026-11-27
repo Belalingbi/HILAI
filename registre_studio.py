@@ -1,3 +1,11 @@
+"""
+registre_studio.py — Registre central des capacités modulaires de HILAI Studio v2.0.
+
+Projet : HILAI — Studio IA Modulaire « Human-in-the-Loop »
+Auteur : Belalingbi Steve / CyberAnonymat Project
+Licence : Apache-2.0
+"""
+
 import importlib
 import json
 from typing import Any
@@ -10,6 +18,31 @@ CAPACITES_ENREGISTREES = {
         "label": "Atelier standard (1 à 4)",
         "module": "studio_coeur",
         "fonction": "preparer_proposition_atelier",
+    },
+    "montage_video_autonome": {
+        "label": "Montage vidéo autonome (instructions écrites)",
+        "module": "montage_video_studio",
+        "fonction": "preparer_montage_video_autonome",
+    },
+    "connecteur_plateformes": {
+        "label": "Connecteur plateformes montage (Premiere/DaVinci/CapCut/FFmpeg)",
+        "module": "montage_video_studio",
+        "fonction": "preparer_connecteur_plateforme",
+    },
+    "generation_images_infinie": {
+        "label": "Génération d'images infinie (flux continu)",
+        "module": "generateur_media_infini",
+        "fonction": "preparer_lot_generation_images",
+    },
+    "generation_videos_infinie": {
+        "label": "Génération de vidéos infinie (séquences continues)",
+        "module": "generateur_media_infini",
+        "fonction": "preparer_lot_generation_videos",
+    },
+    "conversation_multimodale": {
+        "label": "Conversation multimodale & décisionnelle (Voix/Caméra/Médias)",
+        "module": "ia_fournisseur",
+        "fonction": "repondre_conversation_multimodale_direct",
     },
     "site_web": {
         "label": "Création de site internet",
@@ -89,6 +122,20 @@ def _adapter_kwargs(capacite: str, kwargs: dict[str, Any]) -> dict[str, Any]:
     elif capacite == "reconnaissance_photo":
         if "chemin_photo_str" not in copie and "chemin_photo" in copie:
             copie["chemin_photo_str"] = copie.pop("chemin_photo")
+    elif capacite == "montage_video_autonome":
+        copie.setdefault("instruction", copie.pop("demande_steve", "Montage vidéo dynamique"))
+        copie.setdefault("pieces_jointes", [])
+        copie.setdefault("plateforme", "ffmpeg_hilai")
+    elif capacite == "connecteur_plateformes":
+        copie.setdefault("plateforme", "premiere_pro")
+        copie.setdefault("instruction", copie.pop("demande_steve", "Export timeline"))
+        copie.setdefault("pieces_jointes", [])
+    elif capacite == "generation_images_infinie":
+        copie.setdefault("prompt", copie.pop("demande_steve", "Création visuelle HILAI"))
+    elif capacite == "generation_videos_infinie":
+        copie.setdefault("prompt", copie.pop("demande_steve", "Séquence vidéo HILAI"))
+    elif capacite == "conversation_multimodale":
+        copie.setdefault("demande_steve", copie.pop("instruction", "Bonjour HILAI"))
     return copie
 
 
@@ -108,7 +155,8 @@ def normaliser_resultat(capacite: str, brut: Any) -> dict[str, Any]:
     )
 
     resume = (
-        brut.get("analyse_rapide")
+        brut.get("resume")
+        or brut.get("analyse_rapide")
         or brut.get("resume_architecture")
         or brut.get("explication_technique")
         or brut.get("resume_visuel")
@@ -117,7 +165,21 @@ def normaliser_resultat(capacite: str, brut: Any) -> dict[str, Any]:
         or "Brouillon préparé pour validation de Belalingbi Steve."
     )
 
-    if "proposition_detaillee" in brut:
+    if "timeline_tracks" in brut:
+        pistes_txt = "\n".join(
+            f"  [{t['debut']:.1f}s -> {t['fin']:.1f}s] {t['piste']} : {t['label']} ({t['effet']})"
+            for t in brut.get("timeline_tracks", [])
+        )
+        fichiers_txt = ", ".join(brut.get("apercu_fichiers", []))
+        contenu = (
+            f"Plateforme cible : {brut.get('plateforme_cible', '')}\n"
+            f"Paramètres : {json.dumps(brut.get('parametres', {}), ensure_ascii=False)}\n\n"
+            f"Timeline autonome générée :\n{pistes_txt}\n\n"
+            f"Fichiers d'export préparés : {fichiers_txt}"
+        )
+    elif "reponse_conversation" in brut:
+        contenu = str(brut["reponse_conversation"])
+    elif "proposition_detaillee" in brut:
         contenu = str(brut["proposition_detaillee"])
     elif "code" in brut:
         contenu = (
@@ -164,7 +226,11 @@ def normaliser_resultat(capacite: str, brut: Any) -> dict[str, Any]:
     elif "livrable_detaille" in brut:
         contenu = str(brut["livrable_detaille"])
     else:
-        contenu = json.dumps(brut, indent=2, ensure_ascii=False)
+        contenu = json.dumps(
+            {k: v for k, v in brut.items() if k not in {"image_png_bytes", "sequence_video"}},
+            indent=2,
+            ensure_ascii=False,
+        )
 
     points_val = (
         brut.get("points_validation")

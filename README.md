@@ -1,11 +1,11 @@
-# HILAI — Studio IA Modulaire « Human-in-the-Loop » 🛡️🤖
+# HILAI v2.0 — Studio IA Universel, Multimodal & « Human-in-the-Loop » 🛡️🤖🎬
 
 <p align="center">
   <img src="LOGO.jpg" alt="HILAI Logo" width="220" style="border-radius: 50%; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
 </p>
 
 <p align="center">
-  <strong>L'Intelligence Artificielle Universelle, Modulaire et Durcie où l'Humain garde le Contrôle Décisionnel Suprême.</strong>
+  <strong>L'Intelligence Artificielle Universelle, Multimodale, Créative et Cybersécurisée où l'Humain garde le Contrôle Décisionnel Suprême.</strong>
 </p>
 
 <p align="center">
@@ -18,15 +18,18 @@
 
 ---
 
-## 🌟 Pourquoi HILAI est une IA Incontournable ?
+## 🌟 Pourquoi HILAI v2.0 est une IA Incontournable & Universelle ?
 
-La plupart des systèmes autonomes actuels posent un risque critique : **l'exfiltration de données, les actions autonomes destructrices et les hallucinations décisionnelles**.
+**HILAI (Human-in-the-Loop Artificial Intelligence)** combine la puissance d'un studio multimodal complet avec un **durcissement cybersécurité déterministe** et un **Moteur Local Autonome** qui fonctionne immédiatement sur Windows, Linux, macOS et Docker — **même sans connexion Internet ni clé API payante** !
 
-**HILAI (Human-in-the-Loop Artificial Intelligence)** résout ce dilemme fondamental grâce à une architecture déterministe d'**Humain-dans-la-Boucle** :
-1. **L'IA prépare, analyse et argumente** : exploration, génération de code, conception web, résolution mathématique, dossiers marketing, préparation de communications.
-2. **L'Humain décide exclusivement** : aucune écriture sur le disque dans `sorties_a_valider/`, aucun envoi de message, aucune dépense ni exécution locale ne peut avoir lieu sans une confirmation booléenne stricte (`confirme_steve is True`).
-3. **Apprentissage continu structuré** : capitalisation quotidienne des retours, préférences et leçons validées sans réentraînement coûteux (`memoire_preferences.json`, `journal_YYYY-MM-DD.md`).
-4. **Universelle et immédiatement utilisable par tous** : dotée d'un **Moteur Local Autonome**, HILAI s'exécute instantanément sur n'importe quel ordinateur (Windows, Linux, macOS, Docker), même sans connexion Internet ni clé API payante ! Lorsqu'une clé `GEMINI_API_KEY` est renseignée, elle s'enrichit automatiquement du modèle `gemini-2.5-flash`.
+### ✨ Nouveautés majeures de la v2.0
+1. **🎬 Montage Vidéo Autonome sur Instructions Écrites (`montage_video_studio.py`)** : décrivez votre montage en français/anglais (durée, format `16:9` / `9:16` / `1:1`, style, transitions, sous-titres, musique), HILAI assemble automatiquement une timeline multi-pistes, génère les sous-titres `.srt`, et produit le rendu vidéo (via FFmpeg si installé, ou storyboard PNG + recette complète).
+2. **🔌 Connecteurs Plateformes de Montage** : export direct et assaini vers **Adobe Premiere Pro** (`xmeml` XML + script ExtendScript `.jsx`), **DaVinci Resolve** (script Python API + `.edl` + `.fcpxml`), **CapCut / Web** (`draft_content.json`), **FFmpeg** et **Export Universel EDL/XML/SRT**.
+3. **♾️ Génération Infinie d'Images & de Vidéos (`generateur_media_infini.py`)** : flux génératif continu avec styles configurables, aperçu en direct dans le studio, encodeur PNG/séquences universel 100% Python pur (sans dépendance lourde obligatoire) et protection anti-saturation disque.
+4. **📷 Vision & Interaction Caméra Temps Réel (`multimodal_capteurs.py`)** : flux caméra en direct (`opencv-python` + fallback universel), détection de présence/visages/mouvement/luminosité, prise de décision contextuelle assistée et réponse vocale.
+5. **🎙️ Enregistrement Vocal, Conversation & Pièces Jointes** : bouton d'enregistrement micro natif (`winmm` Windows / `sounddevice`), synthèse vocale IA, bouton pièce jointe rapide `📎` et import sécurisé d'images, vocaux, vidéos et documents (vérification des octets magiques et blocage d'exécutables).
+6. **⚙️ Menu Paramètres & Personnalisation des Couleurs (`parametres_studio.py`)** : 5 thèmes ergonomiques (*CyberMidnight Dark*, *CyberAnonymat Matrix*, *Obsidian Studio Pro*, *Deep Indigo Cinema*, *Clair Ergonomique*) + sélecteur de couleurs personnalisées en direct, configuration IA/Voix/Caméra et quotas cybersécurité.
+7. **🛡️ Souveraineté Human-in-the-Loop** : aucune écriture finale dans `sorties_a_valider/`, aucun export montage ni envoi externe sans `confirme_steve is True`.
 
 ---
 
@@ -34,40 +37,28 @@ La plupart des systèmes autonomes actuels posent un risque critique : **l'exfil
 
 ```mermaid
 flowchart TD
-    User([👤 Décideur Humain / Steve])
-    
-    subgraph Interfaces["🖥️ Interfaces Multiplateformes"]
-        GUI["Interface Graphique (studio_lanceur.py - Tkinter Asynchrone)"]
-        CLI["Interface Terminal (studio_lanceur.py --cli)"]
-    end
-    
-    subgraph Securite["🛡️ Bouclier Cybersécurité (securite_garde_fous.py)"]
-        Filter["Anti-Prompt Injection & Délimiteurs XML"]
-        Traversal["Anti-Path Traversal & Confinement Canonique"]
-        CmdShield["Anti-Command Injection (No shell=True)"]
-        Scrubber["Scrubber Automatique de Secrets (API Keys, JWT)"]
-        MathAST["Parseur Mathématique Sécurisé (Sans eval)"]
-    end
-    
-    subgraph Orchestration["⚙️ Orchestrateur & Registre (registre_studio.py)"]
-        Coeur["Cœur Unifié (studio_coeur.py)"]
-        HybridEngine{"ia_fournisseur.py"}
-        CloudAI["Gemini 2.5 Flash Cloud"]
-        LocalAI["Moteur Local Autonome"]
+    User([👤 Décideur Humain / Opérateur])
+
+    subgraph Interfaces["🖥️ Interfaces Ergonomiques Multiplateformes"]
+        GUI["Interface Graphique v2.0 (studio_lanceur.py — Timeline, Aperçu, Caméra, Voix, Paramètres)"]
+        CLI["Interface Terminal Universelle (studio_lanceur.py --cli)"]
     end
 
-    subgraph Ateliers["🧩 Les 9 Capacités Modulaires"]
-        A1["1. Documents, Bureautique & SQLite"]
-        A2["2. Recherche, Connaissance & Conseil"]
-        A3["3. Visuel, Design & Musique"]
-        A4["4. Langue, Voix & Traduction"]
-        A5["5. Création de Sites Web"]
-        A6["6. Génération de Code Source"]
-        A7["7. Préparation Vidéo depuis Photo"]
-        A8["8. Reconnaissance Photo & Audio"]
-        A9["9. Mathématiques & Géométrie"]
+    subgraph Securite["🛡️ Bouclier Cybersécurité (securite_garde_fous.py)"]
+        Filter["Anti-Prompt Injection & XML Isolation"]
+        AttachShield["Validation Pièces Jointes (Magic Bytes & Anti-Exécutables)"]
+        Traversal["Anti-Path Traversal & Écritures Atomiques"]
+        CmdShield["Anti-Command Injection (No shell=True) & Anti-XML/Script Injection"]
+        Scrubber["Scrubber Automatique de Secrets & Quotas Anti-DoS"]
     end
-    
+
+    subgraph MoteursV2["🎬 Moteurs Multimodaux & Création v2.0"]
+        Montage["Montage Vidéo Autonome & Connecteurs (Premiere / DaVinci / CapCut / FFmpeg)"]
+        Infini["Générateur Infini Images & Vidéos (PNG Pur Python / Séquences)"]
+        VisionVoix["Caméra Temps Réel, Enregistrement Vocal & Synthèse Vocale"]
+        Ateliers["9 Capacités Socle (Documents, Web, Code, Maths AST, Photo/Audio, Com, BI)"]
+    end
+
     subgraph Gatekeeper["🔒 Sas de Validation Déterministe"]
         Verif{"confirme_steve is True ?"}
         Journal[("journal_YYYY-MM-DD.md")]
@@ -78,34 +69,30 @@ flowchart TD
 
     User --> Interfaces
     Interfaces --> Securite
-    Securite --> Orchestration
-    Orchestration --> HybridEngine
-    HybridEngine --> CloudAI
-    HybridEngine --> LocalAI
-    HybridEngine --> Ateliers
-    Ateliers --> Gatekeeper
-    Gatekeeper -- "Refusé / Annulé" --> Journal
+    Securite --> MoteursV2
+    MoteursV2 --> Gatekeeper
     Gatekeeper -- "Validé par l'humain" --> Sorties
-    Gatekeeper -- "Validé par l'humain" --> Memoire
-    Gatekeeper -- "Validé par l'humain" --> Snapshots
+    Gatekeeper -- "Traçabilité" --> Journal
+    Gatekeeper --> Memoire
+    Gatekeeper --> Snapshots
 ```
 
 ---
 
 ## 🔒 Matrice de Durcissement Cybersécurité
 
-| Risque Cyber | Vecteur d'Attaque | Solution Implémentée dans HILAI | Statut |
+| Risque Cyber | Vecteur d'Attaque | Solution Implémentée dans HILAI v2.0 | Statut |
 | :--- | :--- | :--- | :--- |
-| **Prompt Injection** | Jailbreak, redéfinition de rôle, contournement | Filtrage par motifs réguliers, encapsulation XML étanche et autorité codée en dur. | **ACTIF (100%)** |
-| **Path Traversal** | `../../etc/passwd` ou écriture de fichiers arbitraires | Validation par résolution canonique `.resolve()` confinée à `sorties_a_valider/`. | **ACTIF (100%)** |
-| **Command Injection** | Métalangage shell (`; rm -rf /`, `\|`, backticks) | `shell=False` absolu, validation contre liste blanche et arguments typés en liste. | **ACTIF (100%)** |
-| **Secret Leakage** | Fuite de clé API dans le journal ou les commits | Masquage systématique par regex avant toute écriture disque ou affichage écran. | **ACTIF (100%)** |
-| **Arbitrary Code Execution** | Formules mathématiques piégées via `eval()` | Bannissement total de `eval()`, utilisation exclusive d'un analyseur d'arbre AST pur. | **ACTIF (100%)** |
-| **SQL Injection** | Injection dans les bases SQLite locales | Validation stricte des identifiants et requêtes paramétrées avec `?`. | **ACTIF (100%)** |
+| **Prompt Injection & Breakout** | Jailbreak FR/EN, `</untrusted_input>`, contournement | Détection regex multi-langues, neutralisation XML et autorité booléenne stricte. | **ACTIF (100%)** |
+| **Pièces Jointes Malveillantes** | Exécutables `.exe/.bat/.ps1` renommés en `.png`/`.mp4` | Liste noire d'exécutables, contrôle d'octets magiques, taille max et empreinte SHA-256. | **ACTIF (100%)** |
+| **Path Traversal** | `../../etc/passwd` ou écriture arbitraire | Résolution canonique `.resolve()` confinée à `sorties_a_valider/` + écritures atomiques. | **ACTIF (100%)** |
+| **Command & Script Injection** | Métalangage shell, XSS/XXE dans XML montage ou `.jsx`/`.py` | `shell=False` absolu, liste blanche FFmpeg/Python, échappement XML et encodage JSON des scripts. | **ACTIF (100%)** |
+| **Secret Leakage** | Fuite de clé Gemini, OpenAI, GitHub, AWS, JWT, clé privée | Masquage systématique par regex avant logs/disque ; aucun secret dans `config_studio.json`. | **ACTIF (100%)** |
+| **DoS Flux Infini / Eval** | Saturation disque/RAM ou `eval()` malveillant | `ControleurQuotaRessources` borné + parseur mathématique AST pur sans `eval()`. | **ACTIF (100%)** |
 
 ---
 
-## 🚀 Démarrage Rapide en 30 Secondes
+## 🚀 Démarrage Rapide pour Tous (Windows / Linux / macOS)
 
 ### 1. Cloner le Dépôt
 ```bash
@@ -113,56 +100,43 @@ git clone https://github.com/Belalingbi/HILAI.git
 cd HILAI
 ```
 
-### 2. Lancer le Diagnostic Immédiat
+### 2. Installation (Zéro Dépendance Requise pour Démarrer, ou Complète)
+HILAI démarre immédiatement avec Python >= 3.10 standard :
 ```bash
 python verifier_studio.py
-```
-> Vous obtiendrez un rapport complet sur l'intégrité des 11 modules, l'état des garde-fous et les 9 capacités disponibles.
-
-### 3. Exécuter le Studio
-
-#### Mode Interface Graphique (GUI)
-```bash
 python studio_lanceur.py
 ```
-
-#### Mode Ligne de Commande (CLI)
+Pour activer toutes les options Cloud, Bureautique, Webcam & Audio étendues :
 ```bash
-python studio_lanceur.py --cli
+pip install -r requirements.txt
+# Optionnel (webcam OpenCV, Pillow, voix pyttsx3, micro sounddevice) :
+pip install opencv-python pillow pyttsx3 sounddevice
 ```
 
-#### Mode Démonstration Automatisée
-```bash
-python studio_lanceur.py --demo
-```
+### 3. Modes d'Exécution
+- **Interface Graphique Ergonomique v2.0 (GUI)** : `python studio_lanceur.py`
+- **Interface Terminal Universelle (CLI)** : `python studio_lanceur.py --cli`
+- **Diagnostic Sécurité & Modules** : `python studio_lanceur.py --diag`
+- **Démonstration Automatisée Complète** : `python studio_lanceur.py --demo`
 
-### 4. Activer le Cloud Gemini (Optionnel)
-Copiez `.env.example` en `.env` et ajoutez votre clé :
+### 4. Activer l'IA Cloud Gemini (Optionnel)
 ```bash
 cp .env.example .env
+# Éditez .env ou utilisez le menu « ⚙️ Paramètres & Couleurs » dans l'interface graphique
 ```
-Éditez `.env` :
-```env
-GEMINI_API_KEY=AIzaSyVotreCleApiIci
-GEMINI_MODEL=gemini-2.5-flash
-```
-*Si aucune clé n'est renseignée, HILAI bascule automatiquement et de façon transparente sur son moteur local autonome.*
+*Sans clé API, HILAI bascule automatiquement sur son Moteur Local Autonome.*
 
 ---
 
 ## 🧪 Tests & Assurance Qualité
 
-HILAI intègre une suite de tests unitaires et de sécurité complète :
 ```bash
 pytest -v
 ```
-Tous les scénarios de test (résistance aux injections de prompt, tentatives de traversée de chemin, injection de commandes, masquage de clés API, évaluation mathématique sans eval, sas décisionnel humain) sont testés et validés à **100%**.
 
 ---
 
 ## 🐳 Déploiement avec Docker
-
-HILAI inclut un Dockerfile durci multi-stage avec utilisateur non-root :
 
 ```bash
 docker compose -f docker/docker-compose.yml up --build
@@ -177,7 +151,7 @@ Fondateur du **CyberAnonymat Project**
 - **GitHub Personnel** : [https://github.com/Belalingbi/](https://github.com/Belalingbi/)
 - **GitHub Organisation** : [https://github.com/cyberanonymat-sudo](https://github.com/cyberanonymat-sudo)
 - **Chaîne YouTube** : [@CyberAnonymat](https://www.youtube.com/@CyberAnonymat)
-- **Email Contact** : `belalingbi@gmail.com` | `cyberanaonymat@gmail.com`
+- **Email Contact** : `belalingbi@gmail.com` | `cyberanaonymat@gmail.com` | `belalingbi@europe.com`
 
 ---
 

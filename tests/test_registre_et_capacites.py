@@ -1,5 +1,5 @@
 """
-test_registre_et_capacites.py — Tests de l'exécution et de la normalisation des 9 capacités du registre.
+test_registre_et_capacites.py — Tests de l'exécution et de la normalisation de toutes les capacités v2.0 du registre.
 """
 
 import pytest
@@ -10,7 +10,8 @@ from studio_lanceur import _construire_kwargs_capacite
 class TestRegistreCapacites:
     def test_toutes_capacites_disponibles(self):
         dispo = verifier_disponibilite_capacites()
-        assert len(dispo) == 9
+        assert len(dispo) == len(CAPACITES_ENREGISTREES)
+        assert len(dispo) >= 14
         for cle, info in dispo.items():
             assert info["disponible"] is True, f"Capacité '{cle}' indisponible : {info.get('erreur')}"
 
@@ -20,6 +21,33 @@ class TestRegistreCapacites:
         assert "titre" in res
         assert "resume" in res
         assert "points_validation" in res
+
+    def test_execution_capacite_montage_video_autonome(self):
+        kwargs = _construire_kwargs_capacite(
+            "montage_video_autonome",
+            "Monte une vidéo dynamique de 45s avec sous-titres",
+            "", "", "", "",
+            plateforme_montage="premiere_pro",
+        )
+        res = executer_capacite("montage_video_autonome", **kwargs)
+        assert "timeline_tracks" in res["donnee_brute"]
+        assert len(res["donnee_brute"]["timeline_tracks"]) >= 4
+
+    def test_execution_capacite_generation_images_infinie(self):
+        kwargs = _construire_kwargs_capacite("generation_images_infinie", "Ville cyber", "", "", "", "")
+        res = executer_capacite("generation_images_infinie", **kwargs)
+        assert res["donnee_brute"]["image_png_bytes"].startswith(b"\x89PNG\r\n\x1a\n")
+
+    def test_execution_capacite_generation_videos_infinie(self):
+        kwargs = _construire_kwargs_capacite("generation_videos_infinie", "Travelling futuriste", "", "", "", "")
+        res = executer_capacite("generation_videos_infinie", **kwargs)
+        assert len(res["donnee_brute"]["sequence_video"]["frames_png"]) >= 2
+
+    def test_execution_capacite_conversation_multimodale(self):
+        kwargs = _construire_kwargs_capacite("conversation_multimodale", "Analyse ce projet", "", "", "", "")
+        res = executer_capacite("conversation_multimodale", **kwargs)
+        assert "titre" in res
+        assert "contenu_principal" in res
 
     def test_execution_capacite_site_web(self):
         kwargs = _construire_kwargs_capacite("site_web", "Site vitrine HILAI", "", "", "", "")
